@@ -1,0 +1,67 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Enviar Diagnostico {% endblock %}
+
+{% block content%} 
+
+<br>
+
+<div class="row ">
+
+    
+  
+      <form class="col s12 container" method="POST">{% csrf_token %}
+
+          <div class="container">
+
+            <div class="col s6">
+                <img src="https://img.freepik.com/free-vector/hand-drawn-colorful-abstract-leaves-pattern_79603-1779.jpg?w=740&t=st=1656442808~exp=1656443408~hmac=8dece7abfcc85cb2002a39fad89c2bc62917f88ceec6aa07663ecd74a339b38f" alt="" width="400" height="470">
+                
+            </div>
+
+            <div class="col s6">
+                <h3 class="header blue white-text">Envío de diagnóstico</3>
+            </div>
+
+                        <div class="input-field col s6">
+                <input name="diagnostic_id" placeholder="Placeholder" id="first_name" type="text" class="validate">
+                <label for="first_name">Diagnostic ID</label>
+              </div>
+
+              <div class="input-field col s6">
+                <input name="doctor_id" placeholder="Placeholder" id="first_name" type="text" class="validate">
+                <label for="first_name">Doctor ID</label>
+              </div>
+
+              <div class="input-field col s6">
+                <input name="patient_id" placeholder="Placeholder" id="first_name" type="text" class="validate">
+                <label for="first_name">Paciente ID</label>
+              </div>
+
+            
+
+              <div class="input-field col s6">
+                <textarea name="diagnostic_text" id="email" type="text" class="validate" placeholder="Diagnostic"></textarea>
+                <label for="email">Diagnostico</label>
+              </div>
+
+              
+            </div>
+              
+              
+             
+
+            
+            <div class="center">
+              <button class="btn blue darken-4 col s4 container" type="submit">Enviar</button>
+            </div>
+               </div>
+      </form>
+    </div>
+
+
+    
+
+
+
+{% endblock%}

@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Mostrar Paciente {% endblock %}
+
+{% block content%} 
+
+<div class="container">
+
+    <h4 class="purple darken-4 center white-text">Datos del paciente</h4>
+    <ul class="collection">
+      
+      <li class="collection-item avatar">
+      <i class="material-icons circle indigo">person</i>
+        <span class="title">Nombres</span>
+        <p>Primer nombre: {{data.person.name}} <br>
+           Segundo nombre: {{data.person.second_name}}
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+      <li class="collection-item avatar">
+        <i class="material-icons circle blue">account_circle</i>
+        <span class="title">Apellidos</span>
+        <p>Primer apellido: {{data.person.lastname}}<br>
+           Segundo apellido: {{data.person.second_lastname}}
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+      <li class="collection-item avatar">
+        <i class="material-icons circle purple">person_pin</i>
+        <span class="title">Datos</span>
+        <p>Cedula: {{data.person.person_id}} <br>
+           Edad: {{data.person.age}} <br>
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+    </ul>
+  </div>
+        
+
+
+
+{% endblock%}

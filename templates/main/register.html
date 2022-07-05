@@ -1,0 +1,90 @@
+   <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+{% extends 'main/base.html' %}
+{%block content%}
+
+<style type="text/css">
+  html, body, .block {
+	height: 100%;
+  }
+  nav ul li a:hover, nav ul li a.active {
+	background-color: rgba(0,0,0,.1);
+  }
+  footer {
+	padding-left: 0;
+  }
+</style>
+
+
+  <div id="green" class="block container white lighten-1">
+    <nav class="pushpin-demo-nav" data-target="green">
+      <div class="nav-wrapper blue darken-4">
+        <div class="container">
+          <a href="#" class="brand-logo">Registrarse como Paciente</a>
+
+          
+          
+        </div>
+      </div>
+    </nav>
+     <br>
+    
+     <div class="container">
+      <form action="" method="POST" class="col s12 container" id="post-form">{% csrf_token %}
+       
+        {{expectedphraseform}}
+  
+        <div class="center">
+          <button class="btn blue darken-4" name="person" type="submit">Registrarse</button>
+        </div>
+      </form>
+     </div>
+
+  </div>
+
+  <div id="blue" class="block container white lighten-1">
+    <nav class="pushpin-demo-nav" data-target="blue">
+      <div class="nav-wrapper purple darken-4">
+        <div class="container">
+          <a href="#" class="brand-logo">Registrarse como Doctor</a>
+          
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <form action="" method="POST" class="col s12 container" id="post-form">{% csrf_token %}
+         
+        <div class="input-field">
+          <input name="title" id="email" type="text" class="validate">
+          <label for="email">Titulo</label>
+        </div>
+      
+   
+      {{bannedphraseform}}
+
+      <div class="center">
+        <button class="btn purple darken-4" name="doctor" type="submit">Registrarse</button>
+      </div>
+    </form>
+    </div>
+  </div>
+
+
+
+<script type="text/javascript">
+  $('.pushpin-demo-nav').each(function() {
+	var $this = $(this);
+	var $target = $('#' + $(this).attr('data-target'));
+	$this.pushpin({
+	  top: $target.offset().top,
+	  bottom: $target.offset().top + $target.outerHeight() - $this.height()
+	});
+  });
+</script>
+
+{% endblock%}

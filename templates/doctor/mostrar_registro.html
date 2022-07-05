@@ -1,0 +1,104 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Mostrar Registros {% endblock %}
+
+{% block content%} 
+
+<br>
+
+    <h4 class="purple center white-text container">Registros de Paciente</h4>
+
+
+<div class="container striped">
+  <table class="table">
+      <thead>
+          <tr>
+              <th>#Registro</th>
+              <th>Oxigeno</th>
+              <th>Pulso</th>
+              <th>Temperatura</th>
+              <th>Respiracion</th>
+              <th>Peso</th>
+              <th>Altura</th>
+          </tr>
+      </thead>
+
+
+      <tbody>
+          {% for item in vitals %}
+          <td>{{ vitals.vitals.register_number }}</td>
+          <td>{{ vitals.vitals.oxigen }}</td>
+          <td>{{ vitals.vitals.heart_rate }}</td>
+          <td>{{ vitals.vitals.temperature }}</td>
+          <td>{{ vitals.vitals.resp_rate }}</td>
+          <td>{{ vitals.vitals.weight }} kg</td>
+          <td>{{ vitals.vitals.height }} cm</td>    
+          </tr>                    
+          {% endfor %}    
+      </tbody>
+  </table>
+</div>
+
+<br>
+
+<h4 class="blue center white-text container">Datos de Registros</h4>
+
+
+<div class="container striped">
+  <table class="table">
+      <thead>
+          <tr>
+              <th>#Registro</th>
+              <th>Año</th>
+              <th>Mes</th>
+              <th>Dia</th>
+              <th>Hora</th>
+          </tr>
+      </thead>
+
+
+      <tbody>
+          {% for item in vitals %}
+          <td>{{ vitals.vitals.register_number }}</td>
+          <td>{{ vitals.vitals.year_taken }}</td>
+          <td>{{ vitals.vitals.month_taken }}</td>
+          <td>{{ vitals.vitals.day_taken }}</td>
+          <td>{{ vitals.vitals.hour_taken }}</td>
+            
+          </tr>                    
+          {% endfor %}    
+      </tbody>
+  </table>
+</div>
+
+<br>
+
+<h4 class="teal center white-text container">Diagnosticos del Paciente</h4>
+
+<div class="container striped">
+  <table class="table">
+      <thead>
+          <tr>
+              <th>Numero Diagnostico</th>
+              <th>Cedula Doctor</th>
+              <th>Cedula Paciente</th>
+              <th>Diagnostico</th>
+          </tr>
+      </thead>
+
+
+      <tbody>
+          {% for item in diagnostic %}
+          <td>{{ diagnostic.diagnostic.diagnostic_id }}</td>
+          <td>{{ diagnostic.diagnostic.doctor_id }}</td> 
+          <td>{{ diagnostic.diagnostic.patient_id }}</td> 
+          <td>{{ diagnostic.diagnostic.diagnostic_text }}</td>   
+  
+  
+  
+          </tr>                    
+          {% endfor %}    
+      </tbody>
+  </table>
+</div>
+{% endblock%}

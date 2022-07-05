@@ -1,0 +1,65 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Actualizar Doctor {% endblock %}
+
+{% block content%} 
+
+<br>
+
+<div class="row ">
+
+      <form class="col s12 container" method="POST">{% csrf_token %}
+
+          <div class="container">
+
+            <div class="col s6">
+                <img 
+                src="https://img.freepik.com/free-vector/hand-drawn-colorful-abstract-leaves-pattern_79603-1779.jpg?w=740&t=st=1656442808~exp=1656443408~hmac=8dece7abfcc85cb2002a39fad89c2bc62917f88ceec6aa07663ecd74a339b38f" 
+                alt="" width="400" height="650">
+                
+            </div>
+
+            <div class="col s6">
+                <h3 class="header pink white-text">Actualizacion</h3>
+            </div>
+
+            <div class="input-field col s6">
+                <input name="person_id" value={{data.doctor.person_id}} id="first_name" type="text" class="validate">
+                <label for="first_name">Cedula</label>
+              </div>
+
+              <div class="input-field col s6">
+                <input name="name" value={{data.doctor.name}} id="first_name" type="text" class="validate">
+                <label for="first_name">Nombre</label>
+              </div>
+
+              <div class="input-field col s6">
+                <input name="second_name" value={{data.doctor.second_name}} id="first_name" type="text" class="validate">
+                <label for="first_name">Segundo nombre</label>
+              </div>
+
+              <div class="input-field col s6">
+                <input name="lastname" value={{data.doctor.lastname}} id="first_name" type="text" class="validate">
+                <label for="first_name">Apellido</label>
+              </div>
+
+              <div class="input-field col s6">
+                <input name="second_lastname" value={{data.doctor.second_lastname}} id="first_name" type="text" class="validate">
+                <label for="first_name">Segundo Apellido</label>
+              </div>
+
+              <div class="input-field col s6">
+                <input name="age" value={{data.doctor.age}} id="first_name" type="text" class="validate">
+                <label for="first_name">Edad</label>
+              </div>
+              
+            </div>
+                         
+            <div class="center">
+              <button class="btn pink col s4 container" type="submit">Actualizar</button>
+            </div>
+               </div>
+      </form>
+    </div>
+
+{% endblock%}

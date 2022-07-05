@@ -1,0 +1,56 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Buscar Registros {% endblock %}
+
+{% block content%} 
+<br>
+
+<div class="row ">
+
+    
+  
+      <form class="col s12 container" method="POST">{% csrf_token %}
+
+          <div class="container">
+
+            <div class="col s6">
+                <img src="https://img.freepik.com/free-vector/hand-drawn-colorful-abstract-leaves-pattern_79603-1779.jpg?w=740&t=st=1656442808~exp=1656443408~hmac=8dece7abfcc85cb2002a39fad89c2bc62917f88ceec6aa07663ecd74a339b38f" alt="" width="400" height="400">
+                
+            </div>
+
+            <div class="col s6">
+                <h3 class="header">Pacientes</3>
+            </div>
+
+            
+
+            <p style="visibility:hidden"  class="col s6">Lorectetur fuga duciis non sint beatae commodi dolorum.</p>
+              
+
+            <div class="input-field col s6">
+                <input name="user_id" id="email" type="text" class="validate">
+                <label for="email">Cedula del paciente</label>
+              </div>
+
+              
+            </div>
+              
+              <p style="visibility:hidden" class="col s6">Lor  piente optio nobis distinctio provident molestiae nisi. Eum minima illum id vitae.1</p>
+              <p  class="col s6">Lorectetur fuga duciis non sint beatae commodi dolorum.</p>
+              <p class="col s6"></p>
+             
+
+            
+            <div class="center">
+              <button class="btn indigo darken-4 col s4 container" type="submit">Buscar</button>
+            </div>
+               </div>
+      </form>
+    </div>
+
+
+    
+  
+
+  
+{% endblock%}

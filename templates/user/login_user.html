@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Usuario Iniciar {% endblock %}
+
+{% block content %} 
+
+<div class="row container">
+
+  <h3 class="indigo white-text center-align"> Formulario de Inicio de Sesión</h3>
+
+        <div class="container">
+        <h5  class="indigo darken-4 col s6 white-text center-align">Iniciando como <a href={{ '/login_user/'}}> Usuario</a></h5>
+        <h5 class="indigo col s6 white-text center-align">Iniciar como <a href={{ '/login_doctor/'}}> Doctor</a></h5>
+        <h5 class="indigo col s8 white-text center-align offset-s2">Pulse sobre la opción que desee</h5>
+
+    <form class="col s12 container" method="POST">{% csrf_token %}
+        
+    
+        <div class="row">
+            <div class="input-field col s12">
+              <input name="user_id" id="email" type="text" class="validate">
+              <label for="email">Cedula</label>
+            </div>
+          </div>
+    
+        <div class="row">
+            <div class="input-field col s12">
+              <input name="user_password" id="password" type="password" class="validate">
+              <label for="password">Contraseña</label>
+            </div>
+          </div>
+
+          <div class="center">
+            <button class="btn indigo darken-4" type="submit">Entrar</button>
+          </div>
+    
+       
+    
+        </div>
+    </form>
+  </div>
+        
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Buscar Registros {% endblock %}
+
+{% block content%} 
+<br>
+
+<div class="row ">
+
+    
+  
+      <form class="col s12 container" method="POST">{% csrf_token %}
+
+          <div class="container">
+
+            <div class="col s6">
+                <img src="https://www.juanmacivico87.com/wp-content/uploads/que-es-material-design.png" alt="">
+                
+            </div>
+
+            <div class="col s6">
+                <h3 class="header">Registros</3>
+            </div>
+
+            
+
+            <p class="col s6" style="visibility:hidden">Lorectetur fuga duciis non sint beatae commodi dolorum.</p>
+              
+
+            <div class="input-field col s4">
+                <input name="user_id" id="email" type="text" class="validate">
+                <label for="email">Cedula del paciente</label>
+              </div>
+
+              
+            </div>
+              
+              <p style="visibility:hidden" class="col s6">Lor  piente optio nobis distinctio provident molestiae nisi. Eum minima illum id vitae.1</p>
+              <p class="col s6">Lorectetur fuga duciis non sint beatae commodi dolorum.</p>
+              <p class="col s6"></p>
+             
+
+            
+            <div class="center">
+              <button class="btn indigo darken-4 col s4 container" type="submit">Buscar</button>
+            </div>
+               </div>
+      </form>
+    </div>
+
+
+    
+  
+
+  
+{% endblock%}
