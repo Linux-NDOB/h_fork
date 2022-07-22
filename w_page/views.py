@@ -475,3 +475,4 @@ class vital_view(View):
 
 
 
+

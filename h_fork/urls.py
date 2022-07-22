@@ -63,15 +63,23 @@ urlpatterns = [
     
     path('buscar_registro/' , views.buscar_registro),          
     
-    path('enviar_diagnostico/' , views.enviar_diagnostico),  
+    path('enviar_diagnostico/<int:id>' , views.enviar_diagnostico),  
     
     path('actualizar_doctor/' , views.actualizar_doctor),
     
     path('actualizar_doctor/<int:id>' , views.actualizar_doctor_id),
+
+    path('actualizar_paciente/', views.actualizar_paciente),
+
+    path('actualizar_paciente/<int:id>', views.actualizar_paciente_id),
     
     path('mostrar_paciente/<int:id>' , views.mostrar_paciente),   
     
-    path('mostrar_registro/<int:id>' , views.mostrar_registro),   
+    path('mostrar_registro/<int:id>' , views.mostrar_registro), 
     
+    path('listado_pacientes/' , views.listado_pacientes),
+
+    path('listado_pacientes/<int:id>', views.listado_pacientes_id),
+
 ]  
 

@@ -13,7 +13,7 @@ class Person(models.Model):
     second_name = models.CharField(max_length=100, blank=True, null=True)
     lastname = models.CharField(max_length=100)
     second_lastname = models.CharField(max_length=100, blank=True, null=True)
-    age = models.PositiveIntegerField()
+    age = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         #managed = False
@@ -52,7 +52,7 @@ class DoctorAcount(models.Model):
 
 
 class PatientDiagnostic(models.Model):
-    diagnostic_id = models.PositiveIntegerField(primary_key=True)
+    diagnostic_id = models.AutoField(primary_key=True)
     doctor = models.ForeignKey(Doctor, on_delete = models.CASCADE)
     patient = models.ForeignKey(Patient, on_delete = models.CASCADE)
     diagnostic_text = models.TextField()
@@ -102,3 +102,5 @@ class VitalSigns(models.Model):
     class Meta:
         #managed = False
         db_table = 'vital_signs'
+        
+

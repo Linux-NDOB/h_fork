@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Listado de pacientes {% endblock %}
+
+{% block content%}
+
+     {% include 'main/doctor_navbar.html' %}
+
+    {{ patients }}
+    <br>
+
+<div class="container">
+    <div class="row">
+        <form class="col s8 offset-s2">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">search</i>
+              <input id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Buscar paciente</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    
+    <div>
+        
+    </div>
+</div>
+
+{% endblock%}

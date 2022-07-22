@@ -7,6 +7,10 @@
 {% extends 'main/base.html' %}
 {%block content%}
 
+     {% include 'main/main_navbar.html' %}
+
+    <br>
+
 <style type="text/css">
   html, body, .block {
 	height: 100%;
@@ -25,23 +29,62 @@
       <div class="nav-wrapper blue darken-4">
         <div class="container">
           <a href="#" class="brand-logo">Registrarse como Paciente</a>
-
-          
-          
         </div>
       </div>
     </nav>
      <br>
     
      <div class="container">
-      <form action="" method="POST" class="col s12 container" id="post-form">{% csrf_token %}
+      <div class="col s12 container" id="post-form">{% csrf_token %}
+
+           <div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Placeholder" id="ru_id" type="text" class="validate">
+          <label for="first_name">Cedula</label>
+        </div>
+
+          <div class="input-field col s12">
+          <input placeholder="Placeholder" id="ru_name" type="text" class="validate">
+          <label for="first_name">Nombre</label>
+        </div>
+
+          <div class="input-field col s12">
+          <input placeholder="Placeholder" id="ru_sname" type="text" class="validate">
+          <label for="first_name">Segundo nombre</label>
+        </div>
+
+          <div class="input-field col s12">
+          <input placeholder="Placeholder" id="ru_lastname" type="text" class="validate">
+          <label for="first_name">Apellido</label>
+        </div>
+
+          <div class="input-field col s12">
+          <input placeholder="Placeholder" id="ru_slastname" type="text" class="validate">
+          <label for="first_name">Segundo apellido</label>
+        </div>
+
+          <div class="input-field col s12">
+          <input placeholder="Placeholder" id="ru_bdate" type="date" class="validate">
+          <label for="first_name">Fecha de nacimiento</label>
+        </div>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
        
-        {{expectedphraseform}}
-  
+
         <div class="center">
           <button class="btn blue darken-4" name="person" type="submit">Registrarse</button>
+            <a href="/home/" class="btn pink">Volver</a>
         </div>
-      </form>
+      </div>
      </div>
 
   </div>
@@ -51,27 +94,64 @@
       <div class="nav-wrapper purple darken-4">
         <div class="container">
           <a href="#" class="brand-logo">Registrarse como Doctor</a>
-          
         </div>
       </div>
     </nav>
 
+      <br>
+
     <div class="container">
-      <form action="" method="POST" class="col s12 container" id="post-form">{% csrf_token %}
+      <div class="col s12 container" id="post-form">{% csrf_token %}
          
-        <div class="input-field">
-          <input name="title" id="email" type="text" class="validate">
-          <label for="email">Titulo</label>
+        <div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Placeholder" id="rd_cedula" type="text" class="validate">
+          <label for="first_name">Cedula</label>
         </div>
-      
+
+          <div class="input-field col s12">
+          <input placeholder="Placeholder" id="rd_name" type="text" class="validate">
+          <label for="first_name">Nombre</label>
+        </div>
+
+          <div class="input-field col s12">
+          <input placeholder="Placeholder" id="rd_sname" type="text" class="validate">
+          <label for="first_name">Segundo nombre</label>
+        </div>
+
+          <div class="input-field col s12">
+          <input placeholder="Placeholder" id="rd_lastname" type="text" class="validate">
+          <label for="first_name">Apellido</label>
+        </div>
+
+          <div class="input-field col s12">
+          <input placeholder="Placeholder" id="rd_slastname" type="text" class="validate">
+          <label for="first_name">Segundo apellido</label>
+        </div>
+
+          <div class="input-field col s12">
+          <input placeholder="Placeholder" id="rd_bdate" type="date" class="validate">
+          <label for="first_name">Fecha de nacimiento</label>
+        </div>
+
    
-      {{bannedphraseform}}
+
 
       <div class="center">
         <button class="btn purple darken-4" name="doctor" type="submit">Registrarse</button>
+          <a href="/home/" class="btn pink">Volver</a>
       </div>
-    </form>
+
     </div>
+    </div>
+  </div>
+
+           </div>
+  </div>
+
+       </div>
   </div>
 
 

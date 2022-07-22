@@ -20,18 +20,24 @@ from ui_mainwindow import *
 
 class MainWindow(QMainWindow):
 
+    # Importing secondary sensors
+    def second_data(self, height, weight, imc):
+
+        self.ui.pbpeso.rpb_textValue = str(weight)
+        self.ui.pba.rpb_textValue = str(height)
+        self.ui.pbimc_2.rpb_textValue = str(imc)
+
+        self.h = int(height)
+        self.w = int(weight)
+        self.imc = int(imc)
+    
+    # Importing primary sensors
     def onIntReady(self, temperature, oxigen, h_rate, resp_rate):
-         # Imported from worker vars
+        # Imported from worker vars
         self.ui.pbt.rpb_textValue = str(temperature)
         self.ui.pbo.rpb_textValue = str(oxigen)
         self.ui.pbp.rpb_textValue = str(h_rate)
         self.ui.pbr.rpb_textValue = str(resp_rate)
-
-        #self.ui.pbo.rpb_setValue(int(oxigen))
-        #self.ui.pbp.rpb_setValue(int(h_rate))
-        #self.ui.pbr.rpb_setValue(int(resp_rate))
-
-         #rpb_textValue
 
         self.atemp = temperature
         self.aox = oxigen
@@ -52,15 +58,13 @@ class MainWindow(QMainWindow):
 
         self.ui.send.clicked.connect(self.send_data)
 
-
-
-
         # 1 - create Worker and Thread inside the Form
         self.obj = worker.Worker()  # no parent!
         self.thread = PySide2.QtCore.QThread()  # no parent!
 
         # 2 - Connect Worker`s Signals to Form method slots to post data.
         self.obj.intReady.connect(self.onIntReady)
+        self.obj.second_data.connect(self.second_data)
 
         # 3 - Move the Worker object to the Thread object
         self.obj.moveToThread(self.thread)
@@ -69,6 +73,7 @@ class MainWindow(QMainWindow):
         self.obj.finished.connect(self.thread.quit)
 
         # 5 - Connect Thread started signal to Worker operational slot method
+
         self.thread.started.connect(self.obj.procCounter)
 
         # * - Thread finished signal will close the app if you want!
@@ -89,17 +94,13 @@ class MainWindow(QMainWindow):
         hour = int(date.today().strftime("%H"))
 
         try:
-            connection = mysql.connector.connect(host='localhost',
-                                                 database='h_fork',
-                                                 user='root',
-                                                 password='kodokushi')
+            connection = mysql.connector.connect(host='localhost', database='h_fork', user='root', password='kodokushi')
 
             mySql_insert_query = """INSERT INTO vital_signs ( patient_id, oxigen, heart_rate, temperature, resp_rate, weight, height, day_taken, year_taken, month_taken, hour_taken)
                                    VALUES 
                                    (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
 
-            record = (cedula, self.aox, self.ah_rate, self.atemp, self.a_rate, 100, 80, day, year, month, hour )
-
+            record = (cedula, self.aox, self.ah_rate, self.atemp, self.a_rate, self.w, self.h, day, year, month, hour )
 
             cursor = connection.cursor()
             cursor.execute(mySql_insert_query, record)

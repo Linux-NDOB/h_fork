@@ -2,7 +2,11 @@
 
 {% block title %} Usuario {% endblock %}
 
-{% block content %} 
+{% block content %}
+
+    {% include 'main/user_navbar.html' %}
+
+    <br>
 
 
 <div class="container">
@@ -16,7 +20,9 @@
       <a href="#email"><span class="white-text email">{{titles.doctor_account.doctor_email}}</span></a>
     </div></li>
     <li><a class="subheader">Pacientes</a></li>
-    <li><a href="/actualizar_doctor/"><i class="material-icons">sync_alt</i>Actualizar datos</a></li>  </ul>
+    <li><a href="/actualizar_paciente/{{ data.person.person_id }}"><i class="material-icons">sync_alt</i>Actualizar datos</a></li> 
+    <li><a href="/login/"><i class="material-icons">logout</i>Cerrar sesion</a></li>  
+  </ul>
 
 
 
@@ -31,94 +37,32 @@
     <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
   </div>
 </div>
-      <div class=" container  ">
-
-        <div class="grey-text text-darken-3 lighten-3">Lorem ipsum dolor sit amet consectetur 
-          adipisicing elit. Molestias aliquid assumenda aliquam doloremque quaerat.
-          Ea aliquam, delectus quas cum incidunt nemo, magni, recusandae qui voluptas cupiditate impedit! 
-          Mollitia, magnam tenetur.
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia quo nam itaque ducimus beatae 
-          illum porro veritatis earum quam velit culpa eius error, aperiam vero, fuga magnam molestias sunt
-          laudantium!
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel temporibus quasi rem, tempora aperiam inventore
-          qui iste quis, optio error voluptate laboriosam nisi, repudiandae vitae! Ipsa in ex quod et!
-        </div>
-
-       
-
-       
-
-        <br>
-</div>
-
-<div class="parallax-container">
-  <div class="parallax"><img src="https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"></div>
-</div>
 
 
-
-<div class="fixed-action-btn floating-action-btn">
-  <a class="btn-floating btn-large red btn-large pulse indigo sidenav-trigger" data-target="slide-out">
-    <i class="large material-icons">menu</i>
-  </a>
-</div>
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container">
 
 
 <div class="container">
   <ul id="tabs-swipe-demo" class="tabs">
-    <li class="tab col s3"><a class="active" href="#test-swipe-1">Datos de Paciente</a></li>
-    <li class="tab col s3"><a  href="#test-swipe-2">Registros de paciente</a></li>
-    <li class="tab col s3"><a href="#test-swipe-3">Datos de Registros</a></li>
-    <li class="tab col s3"><a href="#test-swipe-4">Diagnosticos</a></li>
+    <li class="tab col s3 "><a class="active blue white-text" href="#test-swipe-1">Datos de Paciente</a></li>
+    <li class="tab col s3"><a class="purple white-text" href="#test-swipe-2">Registros de paciente</a></li>
+    <li class="tab col s3"><a class="cyan white-text" href="#test-swipe-3">Datos de Registros</a></li>
+    <li class="tab col s3"><a class="teal white-text" href="#test-swipe-4">Diagnosticos</a></li>
   </ul>
   <div id="test-swipe-1" class="col s12 blue">
 
     <h4 class="indigo center white-text">Datos de Paciente</h4>
   <ul class="collection">
-    
+
     <li class="collection-item avatar">
       <i class="material-icons circle indigo">person</i>
-      <span class="title">Nombres</span>
-      <p>Primer nombre: {{data.person.name}} <br>
-         Segundo nombre: {{data.person.second_name}}
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-    </li>
-    <li class="collection-item avatar">
-      <i class="material-icons circle blue">account_circle</i>
-      <span class="title">Apellidos</span>
-      <p>Primer apellido: {{data.person.lastname}}<br>
-         Segundo apellido: {{data.person.second_lastname}}
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-    </li>
-    <li class="collection-item avatar">
-      <i class="material-icons circle purple">person_pin</i>
       <span class="title">Datos</span>
-      <p>Cedula: {{data.person.person_id}} <br>
-         Edad: {{data.person.age}}
+      <p>{{data.person.name}} {{data.person.second_name}} {{data.person.lastname}} {{data.person.second_lastname}} <br>
+          CC: {{data.person.person_id}} <br>
+         Fecha de nacimiento: {{data.person.age}}
       </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      
     </li>
+
   </ul>
 </div>
   </div>
@@ -152,9 +96,9 @@
           <td>{{ vitals.vitals.temperature }}</td>
           <td>{{ vitals.vitals.resp_rate }}</td>
           <td>{{ vitals.vitals.weight }} kg</td>
-          <td>{{ vitals.vitals.height }} cm</td>    
-          </tr>                    
-          {% endfor %}    
+          <td>{{ vitals.vitals.height }} cm</td>
+          </tr>
+          {% endfor %}
       </tbody>
   </table>
 </div>
@@ -184,9 +128,9 @@
           <td>{{ vitals.vitals.month_taken }}</td>
           <td>{{ vitals.vitals.day_taken }}</td>
           <td>{{ vitals.vitals.hour_taken }}</td>
-            
-          </tr>                    
-          {% endfor %}    
+
+          </tr>
+          {% endfor %}
       </tbody>
   </table>
 </div>
@@ -212,19 +156,29 @@
       <tbody>
           {% for item in diagnostic %}
           <td>{{ diagnostic.diagnostic.diagnostic_id }}</td>
-          <td>{{ diagnostic.diagnostic.doctor_id }}</td> 
-          <td>{{ diagnostic.diagnostic.patient_id }}</td> 
-          <td>{{ diagnostic.diagnostic.diagnostic_text }}</td>   
-  
-  
-  
-          </tr>                    
-          {% endfor %}    
+          <td>{{ diagnostic.diagnostic.doctor_id }}</td>
+          <td>{{ diagnostic.diagnostic.patient_id }}</td>
+          <td>{{ diagnostic.diagnostic.diagnostic_text }}</td>
+
+          </tr>
+          {% endfor %}
       </tbody>
   </table>
 </div>
 
 </div>
+
+<div class="parallax-container">
+  <div class="parallax"><img src="https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"></div>
+</div>
+
+
+<div class="fixed-action-btn floating-action-btn">
+  <a class="btn-floating btn-large red btn-large pulse indigo sidenav-trigger" data-target="slide-out">
+    <i class="large material-icons">menu</i>
+  </a>
+</div>
+            
 
 {% endblock %}
 

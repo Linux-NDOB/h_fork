@@ -9,7 +9,7 @@
 
     
   
-      <form class="col s12 container" method="POST">{% csrf_token %}
+      <div class="col s12 container" >{% csrf_token %}
 
           <div class="container">
 
@@ -44,8 +44,12 @@
             <div class="center">
               <button class="btn indigo darken-4 col s4 container" type="submit">Buscar</button>
             </div>
+
+            <div class="center">
+              <button onclick="go_doctor({{data.doctor.person_id}})" class="btn btn-primary pink col s4 container" id="update_user_button" type="submit">Volver</button>
+            </div>
                </div>
-      </form>
+              </div>
     </div>
 
 

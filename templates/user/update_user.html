@@ -1,10 +1,10 @@
 {% extends 'main/base.html' %}
 
-{% block title %} Actualizar Doctor {% endblock %}
+{% block title %} Actualizar Datos de Paciente {% endblock %}
 
 {% block content%}
 
-    {% include 'main/doctor_navbar.html' %}
+    {% include 'main/user_navbar.html' %}
 
     <br>
 
@@ -12,7 +12,7 @@
 
 <div class="row ">
 
-      <div class="col s12 container">{% csrf_token %}
+      <div class="col s12 container" >{% csrf_token %}
 
           <div class="container">
 
@@ -24,51 +24,51 @@
             </div>
 
             <div class="col s6">
-                <h3 class="header pink white-text">Actualizacion</h3>
+                <h3 class="header pink white-text">Actuaizar Paciente</h3>
             </div>
 
             <div class="input-field col s6">
-                <input name="person_id" disabled value={{data.person.person_id}} id="d_id" type="text" class="validate">
+                <input name="person_id" disabled value={{data.person.person_id}} id="u_id" type="text" class="validate">
                 <label for="first_name">Cedula</label>
               </div>
 
               <div class="input-field col s6">
-                <input name="name" value={{data.person.name}} id="d_name" type="text" class="validate">
+                <input name="name" value={{data.person.name}} id="u_name" type="text" class="validate">
                 <label for="first_name">Nombre</label>
               </div>
 
               <div class="input-field col s6">
-                <input name="second_name" value={{data.person.second_name}} id="d_sname" type="text" class="validate">
+                <input name="second_name" value={{data.person.second_name}} id="u_sname" type="text" class="validate">
                 <label for="first_name">Segundo nombre</label>
               </div>
 
               <div class="input-field col s6">
-                <input name="lastname" value={{data.person.lastname}} id="d_lastname" type="text" class="validate">
+                <input name="lastname" value={{data.person.lastname}} id="u_lastname" type="text" class="validate">
                 <label for="first_name">Apellido</label>
               </div>
 
               <div class="input-field col s6">
-                <input name="second_lastname" value={{data.person.second_lastname}} id="d_slastname" type="text" class="validate">
+                <input name="second_lastname" value={{data.person.second_lastname}} id="u_slastname" type="text" class="validate">
                 <label for="first_name">Segundo Apellido</label>
               </div>
 
               <div class="input-field col s6">
-                <input name="age" value={{data.person.age}} id="d_bdate" type="text" class="validate">
-                <label for="first_name">Fecha de nacimiento</label>
+                <input name="age" value={{data.person.age}} id="u_bdate" type="date" class="validate">
+                <label for="first_name">Fecha de Nacimiento MM-DD-AA</label>
               </div>
               
             </div>
                          
             <div class="center">
-              <button onclick="update_doctor()" class="btn pink col s4 container" type="submit">Actualizar</button>
+              <button onclick="update_user()" class="btn btn-primary blue col s4 container" id="update_user_button" type="submit">Actualizar</button>
             </div>
 
-            <div class="center"  style="visibility: hidden">
+          <div class="center"  style="visibility: hidden">
               <button  class="btn btn-primary pink col s4 container" id="update_user_button" type="submit">Volver</button>
             </div>
 
             <div class="center">
-              <button onclick="go_doctor({{data.person.person_id}})" class="btn btn-primary pink col s4 container" id="update_user_button" type="submit">Volver</button>
+              <button onclick="go_user({{data.person.person_id}})" class="btn btn-primary pink col s4 container" id="update_user_button" type="submit">Volver</button>
             </div>
                </div>
               </div>

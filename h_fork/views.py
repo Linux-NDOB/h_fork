@@ -14,103 +14,15 @@ from django.http import JsonResponse
 
 from w_page.forms import Patient_form, Doctor_form
 
-import requests
+import requests, time
+
+
 
 def create_all(request):
-    expectedphraseform = Patient_form(request.POST)
-    bannedphraseform = Doctor_form(request.POST)
-    if request.method == 'POST' and 'doctor' in request.POST:    
-        if  bannedphraseform.is_valid():
-            try:
-                bannedphraseform.save()
-                person_id = request.POST['person_id']
-                username = request.POST['name']
-                email = request.POST['person_id']+"@gmail.com"
-                title = request.POST['title']
-                password =  username[0:3] + person_id[0:3] 
-                
-                Doctor.objects.create(doctor_id=person_id, 
-                                    person = Person.objects.get(person_id=person_id),
-                                    title=title)
-                
-                DoctorAcount.objects.create(doctor_account_id=person_id,doctor = Doctor.objects.get(doctor_id=person_id),
-                                        doctor_email=email, doctor_password= password, doctor_username=request.POST['name'])
-                
-                doctor_created_id(request, person_id)
-                return redirect('/doctor_created/'+ str(person_id))
-            except:
-                pass
-        
-    if request.method == 'POST' and 'person' in request.POST:  
-            try:
-                expectedphraseform.save()
-                person_id = request.POST['person_id']
-                username = request.POST['name']
-                email = request.POST['person_id']+"@gmail.com"
-                password =  username[0:3] + person_id[0:3] 
 
-                
-                Patient.objects.create(patient_id=person_id, 
-                                    person = Person.objects.get(person_id=person_id))
-                
-                UserAccount.objects.create(user_account_id=person_id,patient = Patient.objects.get(patient_id=person_id),
-                                        user_email=email, user_password= password, username=request.POST['name'])
-                
-                user_created_id(request, person_id)
-                return redirect('/user_created/'+ str(person_id))
-            except:
-                pass
-        
-        
-    else:
-        bannedphraseform = Doctor_form()
-        expectedphraseform = Patient_form()
-    return render(request, 'main/register.html', {'bannedphraseform':bannedphraseform, 'expectedphraseform':expectedphraseform})
+    return render(request, 'main/register.html', {})
 
 def login_all(request):
-    if request.method == 'POST' and 'person' in request.POST:    
-        uid = request.POST['user_id']
-        upassword = request.POST['user_password']
-        if (uid != 0 and upassword != 0 ):
-            uacount=list(UserAccount.objects.filter(user_account_id=uid).values())
-            upass = list(UserAccount.objects.filter(user_password=upassword).values())
-            if len(uacount) > 0 and len(upass) > 0:
-                #data= datas[0]
-                msg = "Parece que los datos ingresados son correctos"
-                user_view(request, uid)
-                return redirect('/user/'+ str(uid))
-            else:
-                msg = "Parece que los datos ingresados son incorrectos"
-            
-                
-            
-        else:
-            msg = "Parece que los datos ingresados son incorrectos"
-    
-    msg = ""
-    if request.method == "POST" and 'doctor' in request.POST:
-        uid = request.POST['user_id']
-        upassword = request.POST['user_password']
-        if (uid != 0 and upassword != 0 ):
-            uacount=list(DoctorAcount.objects.filter(doctor_account_id=uid).values())
-            upass = list(DoctorAcount.objects.filter(doctor_password=upassword).values())
-            if len(uacount) > 0 and len(upass) > 0:
-                #data= datas[0]
-                udata = {'msg': 'success'}
-                msg = "correo y contraseña coinciden"
-                doctor_view(request, uid)
-                return redirect('/doctor/'+ str(uid))
-                print(udata)
-            else:
-                udata = {'msg': 'error'}
-                msg = "Parece que el correo o la contraseña no coinciden"
-                
-            #return HttpResponse(udata['msg'])
-        else:
-            data = {'message': 'not vitals registered'}
-
-            # return HttpResponse(data)
-            #return redirect('/login_user.html/')
     return render(request, 'main/login.html')
 
 
@@ -343,59 +255,24 @@ def buscar_registro(request):
             
     return render(request, 'doctor/buscar_registros.html')
 
-def enviar_diagnostico(request):
-    if request.method == 'POST':    
-        uid = request.POST['patient_id']
-        if (uid != 0  ):
-            uacount=list(Patient.objects.filter(patient_id=uid).values())
-            if len(uacount) > 0:
-                jd = request.POST
-                msg = "Parece que los datos ingresados son correctos"
-                PatientDiagnostic.objects.create(diagnostic_id=jd['diagnostic_id'], 
-                                    diagnostic_text=jd['diagnostic_text'], 
-                                    patient = Patient.objects.get(patient_id=jd['patient_id']),
-                                    doctor = Doctor.objects.get(doctor_id=jd['doctor_id'])
-                                    )
-                
-                return redirect(request.META.get('HTTP_REFERER'))
-
-            else:
-                msg = "Parece que los datos ingresados son incorrectos"           
-        else:
-            msg = "Parece que los datos ingresados son incorrectos"
+def enviar_diagnostico(request, id):   
+    response = requests.get('http://localhost:8000/api/doctors/'+str(id))
     
-    return render(request, 'doctor/enviar_diagnostico.html')
+    users = response.json()
+    
+    context = {
+        'data': users,
+    }
+    
+    return render(request, 'doctor/enviar_diagnostico.html', context)
+    
 
 def actualizar_doctor(request):
     return render(request, 'doctor/actualizar_doctor.html')
 
 def actualizar_doctor_id(request, id):
-    response = requests.get('http://localhost:8000/api/doctors/'+str(id))
-    if request.method == 'POST':    
-        uid = request.POST['person_id']
-        if (uid != 0  ):
-            uacount=list(Person.objects.filter(person_id=uid).values())
-            if len(uacount) > 0:
-                jd = request.POST
-                person = Person.objects.get(person_id=uid)
-                person.person_id = jd['person_id']
-                person.name = jd['name']
-                person.second_name = jd['second_name']
-                
-                person.lastname = jd['lastname']
-                person.second_lastname = jd['second_lastname']
-                person.age = jd['age']
-                   
-                person.save()
-                
-                return redirect(request.META.get('HTTP_REFERER'))
-
-            else:
-                return redirect(request.META.get('HTTP_REFERER'))
-                msg = "Parece que los datos ingresados son incorrectos"           
-        else:
-            msg = "Parece que los datos ingresados"
-
+    response = requests.get('http://localhost:8000/api/persons/'+str(id))
+    
     users = response.json()
     
     context = {
@@ -403,6 +280,22 @@ def actualizar_doctor_id(request, id):
     }
     
     return render(request, 'doctor/actualizar_doctor.html', context)
+
+
+def actualizar_paciente(request):
+    return render(request, 'user/update_user.html')
+
+
+def actualizar_paciente_id(request, id):
+    response = requests.get('http://localhost:8000/api/persons/' + str(id))
+
+    users = response.json()
+
+    context = {
+        'data': users,
+    }
+
+    return render(request, 'user/update_user.html', context)
 
 # Vistas de datos que busca el doctor
 
@@ -432,3 +325,25 @@ def mostrar_registro(request, id):
     }
     #print(users)
     return render(request, 'doctor/mostrar_registro.html', context)
+
+def listado_pacientes(request, id):
+
+    return render(request, 'doctor/listado_pacientes.html')
+
+def listado_pacientes_id(request, id):
+    response = requests.get('http://localhost:8000/api/persons/' + str(id))
+
+    users = response.json()
+
+    #person_id = Person.objects.filter(person_id=person_id)
+    ids = Person.objects.values_list('person_id', flat=True)
+
+    # list method get ids without parse the returning queryset
+
+    print(list(ids))
+
+    context = {
+        'data': users,
+        'patients': ids
+    }
+    return render(request, 'doctor/listado_pacientes.html', context)

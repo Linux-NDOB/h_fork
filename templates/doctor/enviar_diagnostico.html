@@ -10,7 +10,7 @@
 
     
   
-      <form class="col s12 container" method="POST">{% csrf_token %}
+      <div class="col s12 container">{% csrf_token %}
 
           <div class="container">
 
@@ -23,40 +23,40 @@
                 <h3 class="header blue white-text">Envío de diagnóstico</3>
             </div>
 
-                        <div class="input-field col s6">
-                <input name="diagnostic_id" placeholder="Placeholder" id="first_name" type="text" class="validate">
-                <label for="first_name">Diagnostic ID</label>
-              </div>
-
               <div class="input-field col s6">
-                <input name="doctor_id" placeholder="Placeholder" id="first_name" type="text" class="validate">
-                <label for="first_name">Doctor ID</label>
+                <input name="doctor_id" disabled value="{{data.doctor.person_id}}" id="first_name" type="text" class="validate">
+                <label for="first_name">Cedula del Doctor Tratante</label>
               </div>
 
               <div class="input-field col s6">
                 <input name="patient_id" placeholder="Placeholder" id="first_name" type="text" class="validate">
-                <label for="first_name">Paciente ID</label>
+                <label for="first_name">Cedula del Paciente</label>
               </div>
 
             
 
               <div class="input-field col s6">
-                <textarea name="diagnostic_text" id="email" type="text" class="validate" placeholder="Diagnostic"></textarea>
-                <label for="email">Diagnostico</label>
+                <input name="diagnostic_text" id="email" type="text" class="validate" placeholder="Diagnostic"></input>
+                <label for="email">Texto de Diagnostico</label>
               </div>
 
               
             </div>
-              
-              
-             
-
             
             <div class="center">
               <button class="btn blue darken-4 col s4 container" type="submit">Enviar</button>
             </div>
+
+            <div class="center" style="visibility:hidden">
+              <button  class="btn btn-primary pink col s4 container" id="update_user_button" type="submit">Volver</button>
+            </div>
+
+            <div class="center">
+              <button onclick="go_doctor({{data.doctor.person_id}})" class="btn btn-primary pink col s4 container" id="update_user_button" type="submit">Volver</button>
+            </div>
+
                </div>
-      </form>
+              </div>
     </div>
 
 
