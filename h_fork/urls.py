@@ -25,10 +25,6 @@ urlpatterns = [
     
     path('api/', include('w_page.urls')),
     
-    path('login_user/', views.login_user_view ),
-    
-    path('login_doctor/', views.login_doctor_view ),
-    
     path('who/', who.as_view()),
     
     #path('register_user/' , views.create_patient),
@@ -61,9 +57,9 @@ urlpatterns = [
     
     path('buscar_paciente/' , views.buscar_paciente),
     
-    path('buscar_registro/' , views.buscar_registro),          
+    path('buscar_registro/<int:id>/<int:id2>/' , views.buscar_registro),          
     
-    path('enviar_diagnostico/<int:id>' , views.enviar_diagnostico),  
+    path('enviar_diagnostico/<int:id>/<int:idd>/' , views.enviar_diagnostico),  
     
     path('actualizar_doctor/' , views.actualizar_doctor),
     

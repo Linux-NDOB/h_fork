@@ -4,6 +4,8 @@
 
 {% block content%} 
 
+{% include 'main/doctor_navbar.html' %}
+
 <br>
 
 <div class="row ">
@@ -24,19 +26,19 @@
             </div>
 
               <div class="input-field col s6">
-                <input name="doctor_id" disabled value="{{data.doctor.person_id}}" id="first_name" type="text" class="validate">
+                <input name="doctor_id" disabled value="{{data.doctor.person_id}}" id="diu_id" type="text" class="validate">
                 <label for="first_name">Cedula del Doctor Tratante</label>
               </div>
 
               <div class="input-field col s6">
-                <input name="patient_id" placeholder="Placeholder" id="first_name" type="text" class="validate">
+                <input name="patient_id" disabled value="{{user.person.person_id}}" id="did_id" type="text" class="validate">
                 <label for="first_name">Cedula del Paciente</label>
               </div>
 
             
 
               <div class="input-field col s6">
-                <input name="diagnostic_text" id="email" type="text" class="validate" placeholder="Diagnostic"></input>
+                <input name="diagnostic_text" id="d_text" type="text" class="validate" placeholder="Diagnostic"></input>
                 <label for="email">Texto de Diagnostico</label>
               </div>
 
@@ -44,11 +46,11 @@
             </div>
             
             <div class="center">
-              <button class="btn blue darken-4 col s4 container" type="submit">Enviar</button>
+              <button onclick="send_diagnostic()" class="btn blue darken-4 col s4 container" type="submit">Enviar</button>
             </div>
 
             <div class="center" style="visibility:hidden">
-              <button  class="btn btn-primary pink col s4 container" id="update_user_button" type="submit">Volver</button>
+              <button   class="btn btn-primary pink col s4 container" id="update_user_button" type="submit">Volver</button>
             </div>
 
             <div class="center">

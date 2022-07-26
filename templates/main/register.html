@@ -1,170 +1,215 @@
-   <!-- Compiled and minified CSS -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-   <!-- Compiled and minified JavaScript -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
 {% extends 'main/base.html' %}
-{%block content%}
+{%block content%} 
+{% include 'main/main_navbar.html' %}
 
-     {% include 'main/main_navbar.html' %}
+<br />
 
-    <br>
+<div class="container">
+  <ul id="tabs-swipe-demo" class="tabs">
+    <li class="tab col s3 blue-text">
+      <a class="active indigo white-text" href="#test-swipe-1"
+        >Registrarse como paciente</a
+      >
+    </li>
+    <li class="tab col s3">
+      <a class="purple white-text" href="#test-swipe-2"
+        >Registrarse como doctor</a
+      >
+    </li>
+  </ul>
+  <div id="test-swipe-1" class="col s12 white row">
+    <div>
+      <br />
 
-<style type="text/css">
-  html, body, .block {
-	height: 100%;
-  }
-  nav ul li a:hover, nav ul li a.active {
-	background-color: rgba(0,0,0,.1);
-  }
-  footer {
-	padding-left: 0;
-  }
-</style>
+      <div class="container">
+        <div class="col s12 container" id="post-form">
+          {% csrf_token %}
 
+          <div class="row">
+            <div class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input
+                    placeholder="Cedula del paciente"
+                    id="ru_id"
+                    type="text"
+                    class="validate"
+                  />
+                  <label for="first_name">Cedula Paciente</label>
+                </div>
 
-  <div id="green" class="block container white lighten-1">
-    <nav class="pushpin-demo-nav" data-target="green">
-      <div class="nav-wrapper blue darken-4">
-        <div class="container">
-          <a href="#" class="brand-logo">Registrarse como Paciente</a>
-        </div>
-      </div>
-    </nav>
-     <br>
-    
-     <div class="container">
-      <div class="col s12 container" id="post-form">{% csrf_token %}
+                <div class="input-field col s12">
+                  <input
+                    placeholder="Nombre"
+                    id="ru_name"
+                    type="text"
+                    class="validate"
+                  />
+                  <label for="first_name">Nombre</label>
+                </div>
 
-           <div class="row">
-    <div class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input placeholder="Placeholder" id="ru_id" type="text" class="validate">
-          <label for="first_name">Cedula</label>
-        </div>
+                <div class="input-field col s12">
+                  <input
+                    placeholder="Segundo nombre"
+                    id="ru_sname"
+                    type="text"
+                    class="validate"
+                  />
+                  <label for="first_name">Segundo nombre</label>
+                </div>
 
-          <div class="input-field col s12">
-          <input placeholder="Placeholder" id="ru_name" type="text" class="validate">
-          <label for="first_name">Nombre</label>
-        </div>
+                <div class="input-field col s12">
+                  <input
+                    placeholder="Apellido"
+                    id="ru_lastname"
+                    type="text"
+                    class="validate"
+                  />
+                  <label for="first_name">Apellido</label>
+                </div>
 
-          <div class="input-field col s12">
-          <input placeholder="Placeholder" id="ru_sname" type="text" class="validate">
-          <label for="first_name">Segundo nombre</label>
-        </div>
+                <div class="input-field col s12">
+                  <input
+                    placeholder="Segundo apellido"
+                    id="ru_slastname"
+                    type="text"
+                    class="validate"
+                  />
+                  <label for="first_name">Segundo apellido</label>
+                </div>
 
-          <div class="input-field col s12">
-          <input placeholder="Placeholder" id="ru_lastname" type="text" class="validate">
-          <label for="first_name">Apellido</label>
-        </div>
+                <div class="input-field col s12">
+                  <input
+                    placeholder="Fecha de nacimiento"
+                    id="ru_bdate"
+                    type="date"
+                    class="validate"
+                  />
+                  <label for="first_name">Fecha de nacimiento</label>
+                </div>
 
-          <div class="input-field col s12">
-          <input placeholder="Placeholder" id="ru_slastname" type="text" class="validate">
-          <label for="first_name">Segundo apellido</label>
-        </div>
-
-          <div class="input-field col s12">
-          <input placeholder="Placeholder" id="ru_bdate" type="date" class="validate">
-          <label for="first_name">Fecha de nacimiento</label>
-        </div>
-
-
-
-
-
+                <div class="center">
+                  <button
+                    onclick="register_user()"
+                    class="btn purple darken-4"
+                    name="doctor"
+                    type="submit"
+                  >
+                    Registrarse
+                  </button>
+                  <a href="/home/" class="btn pink">Volver</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-       
 
-        <div class="center">
-          <button class="btn blue darken-4" name="person" type="submit">Registrarse</button>
-            <a href="/home/" class="btn pink">Volver</a>
+  <div id="test-swipe-2" class="col s12 white row">
+    <div>
+      <br />
+
+      <div class="container">
+        <div class="col s12 container" id="post-form">
+          {% csrf_token %}
+
+          <div class="row">
+            <div class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input
+                    placeholder="Ingrese una titulacion o diplomado que posea"
+                    id="rd_title"
+                    type="text"
+                    class="validate"
+                  />
+                  <label for="first_name">Ttulo extra del Doctor</label>
+                </div>
+
+                <div class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input
+                        placeholder="Cedula de doctor"
+                        id="rd_id"
+                        type="text"
+                        class="validate"
+                      />
+                      <label for="first_name">Cedula Doctor</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                      <input
+                        placeholder="Nombre "
+                        id="rd_name"
+                        type="text"
+                        class="validate"
+                      />
+                      <label for="first_name">Nombre</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                      <input
+                        placeholder="Segundo nombre"
+                        id="rd_sname"
+                        type="text"
+                        class="validate"
+                      />
+                      <label for="first_name">Segundo nombre</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                      <input
+                        placeholder="Apellido"
+                        id="rd_lastname"
+                        type="text"
+                        class="validate"
+                      />
+                      <label for="first_name">Apellido</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                      <input
+                        placeholder="Segundo apellido"
+                        id="rd_slastname"
+                        type="text"
+                        class="validate"
+                      />
+                      <label for="first_name">Segundo apellido</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                      <input
+                        placeholder="Fecha de nacimiento"
+                        id="rd_bdate"
+                        type="date"
+                        class="validate"
+                      />
+                      <label for="first_name">Fecha de nacimiento</label>
+                    </div>
+
+                    <div class="center">
+                      <button
+                        onclick="register_doctor()"
+                        class="btn purple darken-4"
+                        name="doctor"
+                        type="submit"
+                      >
+                        Registrarse
+                      </button>
+                      <a href="/home/" class="btn pink">Volver</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-     </div>
-
-  </div>
-
-  <div id="blue" class="block container white lighten-1">
-    <nav class="pushpin-demo-nav" data-target="blue">
-      <div class="nav-wrapper purple darken-4">
-        <div class="container">
-          <a href="#" class="brand-logo">Registrarse como Doctor</a>
-        </div>
-      </div>
-    </nav>
-
-      <br>
-
-    <div class="container">
-      <div class="col s12 container" id="post-form">{% csrf_token %}
-         
-        <div class="row">
-    <div class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input placeholder="Placeholder" id="rd_cedula" type="text" class="validate">
-          <label for="first_name">Cedula</label>
-        </div>
-
-          <div class="input-field col s12">
-          <input placeholder="Placeholder" id="rd_name" type="text" class="validate">
-          <label for="first_name">Nombre</label>
-        </div>
-
-          <div class="input-field col s12">
-          <input placeholder="Placeholder" id="rd_sname" type="text" class="validate">
-          <label for="first_name">Segundo nombre</label>
-        </div>
-
-          <div class="input-field col s12">
-          <input placeholder="Placeholder" id="rd_lastname" type="text" class="validate">
-          <label for="first_name">Apellido</label>
-        </div>
-
-          <div class="input-field col s12">
-          <input placeholder="Placeholder" id="rd_slastname" type="text" class="validate">
-          <label for="first_name">Segundo apellido</label>
-        </div>
-
-          <div class="input-field col s12">
-          <input placeholder="Placeholder" id="rd_bdate" type="date" class="validate">
-          <label for="first_name">Fecha de nacimiento</label>
-        </div>
-
-   
-
-
-      <div class="center">
-        <button class="btn purple darken-4" name="doctor" type="submit">Registrarse</button>
-          <a href="/home/" class="btn pink">Volver</a>
-      </div>
-
     </div>
-    </div>
   </div>
-
-           </div>
-  </div>
-
-       </div>
-  </div>
-
-
-
-<script type="text/javascript">
-  $('.pushpin-demo-nav').each(function() {
-	var $this = $(this);
-	var $target = $('#' + $(this).attr('data-target'));
-	$this.pushpin({
-	  top: $target.offset().top,
-	  bottom: $target.offset().top + $target.outerHeight() - $this.height()
-	});
-  });
-</script>
+</div>
 
 {% endblock%}
